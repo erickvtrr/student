@@ -9,14 +9,12 @@ db = SQLAlchemy()
 
 
 def create_app():
+    app = Flask(__name__)
 
-    app = flask(__name__)
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    app.config['es'] = os.getenv('es'), ('erick.silva')
-
-    app.config['SQLACHEMY_DATABASE_URI'] = os.getenv(
-        'postgresql://postgres:[1234]@db.altajzefwnzacajefaix.supabase.co:5432/postgres')
-    app.config['SQLALCHEMY_TREACK_MODIFICATIONS'] = False
+    app.config['SECRET_KEY'] = '2311'
 
     db.init_app(app)
 
